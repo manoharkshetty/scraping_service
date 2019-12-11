@@ -9,6 +9,7 @@ class Package < ApplicationRecord
     scrapper = PackageScraper.new
     list = scrapper.get_package_list(package_size)
     Parallel.each(list, in_processes: 8) do |p|
+      # TODO: Optimise the query. this code is doing 50 selects and 50 insertions.
       next if self.where(name: p[:name], version: p[:version]).count != 0
       package_hash = scrapper.scrape_package(p[:name], p[:version])
       next unless package_hash
