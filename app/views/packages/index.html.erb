@@ -2,29 +2,29 @@
 
 <h1>Packages</h1>
 
-<table>
+<table class="table table-bordered table-striped" border="1">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Version</th>
-      <th>Publication Date</th>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Author</th>
-      <th>Maintainer</th>
+      <th colspan="1">Name</th>
+      <th colspan="1"> Version</th>
+      <th colspan="1">Publication</th>
+      <th colspan="2">Title</th>
+      <th colspan="3">Description</th>
+      <th colspan="1">Authors</th>
+      <th colspan="1">Maintainers</th>
     </tr>
   </thead>
 
   <tbody>
     <% @packages.each do |package| %>
       <tr>
-        <td><%= package.name %></td>
-        <td><%= package.version %></td>
-        <td><%= package.publication_date %></td>
-        <td><%= package.title %></td>
-        <td><%= package.description %></td>
-        <td><%= package.authors[0].name %></td>
-        <td><%= package.maintainers[0].name %></td>
+        <td colspan="1"><%= package.name %></td>
+        <td colspan="1"><%= package.version %></td>
+        <td colspan="1"><%= package.publication_date %></td>
+        <td colspan="2"><%= package.title %></td>
+        <td colspan="3"><%= package.description %></td>
+        <td colspan="1"><%= package.authors.map(&:name).join(", ") %></td>
+        <td colspan="1"><%= package.maintainers.map(&:name).join(", ") %></td>
       </tr>
     <% end %>
   </tbody>
