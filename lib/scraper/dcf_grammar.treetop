@@ -1,0 +1,47 @@
+grammar Dcf
+  rule paragraphs
+    (paragraph eol?)+
+  end
+
+  rule paragraph
+    (field eol?)+
+  end
+
+  rule field
+    attribute separator value
+  end
+
+  rule attribute
+    (!":" !eol .)+
+  end
+
+  rule value
+    (!next_record !parasep .)*
+    {
+      def text_value
+        # I don't really like this, but it works for the files I'm parsing, so..
+        super.strip.gsub(/\n */, ' ')
+      end
+    }
+  end
+
+  rule next_record
+    "\n" [a-zA-Z]
+  end
+
+  rule separator
+    ':' white*
+  end
+
+  rule parasep
+    "\n" "\n"
+  end
+
+  rule eol
+    "\n"
+  end
+
+  rule white
+    [ \t]
+  end
+end
