@@ -21,9 +21,15 @@ class PackageScraper
     # read first 20KB of data which includes at least 50 items
     source = remote_file.read(FILE_MAX_READ_SIZE)
     package_data = Nokogiri::HTML(source).css('p').try(:inner_html)
-    return [] unless package_data
+    unless package_data
+      Rails.logger.error "Failed to fetch package list info as scrapping failed"
+      return []
+    end
     parsed_hash = Dcf.parse(package_data, number_of_packages)
-    return [] unless parsed_hash
+    unless parsed_hash
+      Rails.logger.error "Failed to fetch package list info as DCF failed"
+      return []
+    end
 
     return parsed_hash.map do |r|
       { name: r["Package"], version: r["Version"]}
