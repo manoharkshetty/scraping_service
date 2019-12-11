@@ -41,7 +41,11 @@ bundle exec rails s
 
 And now you can visit the site with the URL http://localhost:3000
 
-Notes:
+#### For reviewer:
+* Most of the Logic sits in Package model and PackageScraper service. 
+* I have added a smaller identity concern that parses the name and email.
+
+#### Notes:
 
 1. Copied the Dcf gem into the app to modify for speed.
 2. Tests are making externals, need to stub them.
