@@ -7,7 +7,6 @@ require 'parallel'
 DESCRIPTION_FILE_PATH = "DESCRIPTION"
 CRAN_BASE_PATH = "http://cran.r-project.org/src/contrib"
 FILE_MAX_READ_SIZE = 10 * 1024
-PACKAGE_MAX_LENGTH = 50
 
 class PackageScraper
   def scrape
@@ -20,14 +19,14 @@ class PackageScraper
     package.deep_transform_keys!{ |key| key.downcase.to_sym }
   end
 
-  def get_package_list
+  def get_package_list(number_of_packages)
     remote_file = Down.open("#{CRAN_BASE_PATH}/PACKAGES")
 
     # read first 50KB of data which includes at least 50 items
     source = remote_file.read(FILE_MAX_READ_SIZE)
     package_data = Nokogiri::HTML(source).css('p').try(:inner_html)
     return [] unless package_data
-    parsed_hash = Dcf.parse(package_data)
+    parsed_hash = Dcf.parse(package_data, number_of_packages)
     return [] unless parsed_hash
 
     return parsed_hash.map do |r|
