@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Packages</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Version</th>
+      <th>Publication Date</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Author</th>
+      <th>Maintainer</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @packages.each do |package| %>
+      <tr>
+        <td><%= package.name %></td>
+        <td><%= package.version %></td>
+        <td><%= package.publication_date %></td>
+        <td><%= package.title %></td>
+        <td><%= package.description %></td>
+        <td><%= package.authors[0].name %></td>
+        <td><%= package.maintainers[0].name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
