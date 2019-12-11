@@ -1,5 +1,13 @@
 require 'rails_helper'
 
+
 RSpec.describe Maintainer, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  # TODO: move these tests to concerns
+  describe '#from_string' do
+    it "parses single maintainer" do
+      maintainers = Maintainer.from_string("Scott Fortmann-Roe <scottfr@berkeley.edu>")
+      expect([Maintainer.new(name: "Scott Fortmann-Roe", email: "scottfr@berkeley.edu")].to_json).to eq(maintainers.to_json)
+    end
+  end
+
 end
