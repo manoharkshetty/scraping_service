@@ -48,4 +48,6 @@ Notes:
 3. Using Parallel gem to make the scraping fasting. but even on a 8 core machine, it takes around 14 seconds. 
 4. I am loading just 20MB of packages file which is enough for 50 packages(should fetch around 100)
 4. Optimize the data read/write better. 
-5. I am not so happy for not implementing the Refresh data functionality. I at least want to setup the seed data or a refresh button on the UI. But It take extra time. 
+5. I am not so happy for not implementing the Refresh data functionality. I at least want to setup the seed data or a refresh button on the UI. But It take extra time.
+6. Should delete authors and maintainers data on deletions of Packages
+7. Should add test for  un happy paths 
