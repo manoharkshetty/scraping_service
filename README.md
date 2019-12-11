@@ -1,24 +1,51 @@
-# README
+##### Prerequisites
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The setups steps expect following tools installed on the system.
 
-Things you may want to cover:
+- Github
+- Ruby [2.5.1]
+- Rails [6.0.1]
 
-* Ruby version
+##### 1. Clone the repo 
 
-* System dependencies
+##### 2. Install the gems
 
-* Configuration
+```ruby
+  bundle install
+  rails webpacker:install
+```
+##### 3. Create and setup the database
 
-* Database creation
+Run the following commands to create and setup the database.
 
-* Database initialization
+```ruby
+bundle exec rake db:create
+bundle exec rake db:setup
+bundle exec rake db:migrate
+```
 
-* How to run the test suite
+##### 3. Setup seed data
 
-* Services (job queues, cache servers, search engines, etc.)
+```ruby
+bundle exec rails c
+Package.import_packages
+```
 
-* Deployment instructions
+##### 4. Start the Rails server
 
-* ...
+You can start the rails server using the command given below.
+
+```ruby
+bundle exec rails s
+```
+
+And now you can visit the site with the URL http://localhost:3000
+
+Notes:
+
+1. Copied the Dcf gem into the app to modify for speed.
+2. Tests are making externals, need to stub them.
+3. Using Parallel gem to make the scraping fasting. but even on a 8 core machine, it takes around 14 seconds. 
+4. I am loading just 20MB of packages file which is enough for 50 packages(should fetch around 100)
+4. Optimize the data read/write better. 
+5. I am not so happy for not implementing the Refresh data functionality. I at least want to setup the seed data or a refresh button on the UI. But It take extra time. 
