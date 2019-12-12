@@ -34,8 +34,8 @@ class Package < ApplicationRecord
       title: package_hash[:title],
       publication_date: package_hash[:"date/publication"].to_date
     )
-    package.authors = Author.from_string(package_hash[:author])
-    package.maintainers = Maintainer.from_string(package_hash[:maintainer])
+    package.authors = Author.construct_list_from_string(package_hash[:author])
+    package.maintainers = Maintainer.construct_list_from_string(package_hash[:maintainer])
     return package
   end
 end

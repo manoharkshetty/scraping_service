@@ -2,7 +2,7 @@ module Identity
   extend ActiveSupport::Concern
 
   module ClassMethods
-    def from_string(identity_string)
+    def construct_list_from_string(identity_string)
       if identity_string.include?("[")
         delimiters = [/(?<=\>),\s/, /(?<=\]),\s/]
         identities = identity_string.split(Regexp.union(delimiters))
