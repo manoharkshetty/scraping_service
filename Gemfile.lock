@@ -110,7 +110,7 @@ GEM
     pg (1.1.4)
     polyglot (0.3.5)
     public_suffix (4.0.1)
-    puma (4.3.1)
+    puma (4.3.3)
       nio4r (~> 2.0)
     rack (2.0.7)
     rack-proxy (0.6.5)
@@ -227,7 +227,7 @@ DEPENDENCIES
   nokogiri
   parallel
   pg (>= 0.18, < 2.0)
-  puma (~> 4.1)
+  puma (~> 4.3)
   rails (~> 6.0.1)
   rspec-rails (~> 3.5)
   rubyzip
